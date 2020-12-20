@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+</head>
+<body>
+<div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="{% url 'home:home' %}">Django Bookmark</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggle-icon">
+              </span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="{% url 'home:home' %}">Home<sapn class="sr-only">(current)</sapn></a>
+                  </li>
+                  <li class="nav-item active">
+                      <a class="nav-link" href="{%url 'polls:index' %}">Polls<sapn class="sr-only">(current)</sapn></a>
+                  </li>
+                  <li class="nav-item active">
+                      <a class="nav-link" href="{% url 'bookmark:list' %}">Bookmark<span class="sr-only">(current)</span> </a>
+                  </li>
+                  <li class="nav-item active">
+                      <a class="nav=link" href="{% url 'blog:post_list' %}">Blog<span class="sr-only">(current)</span> </a>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+      <p></p>
+      <div class="row">
+          <div class="col">
+          </div>
+      </div>
+  </div>
+{% if latest_question_list %}
+     <ul>
+     {% for question in latest_question_list %}
+         <li><a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a> </li>
+     {% endfor %}
+     </ul>
+{% else %}
+     <p>No polls are available.</p>
+{% endif %}
+</body>
+</html>
